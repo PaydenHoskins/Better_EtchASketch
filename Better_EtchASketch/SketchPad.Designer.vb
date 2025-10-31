@@ -48,9 +48,16 @@ Partial Class SketchPad
         Me.AboutToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.RightClickContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ColorDialog = New System.Windows.Forms.ColorDialog()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.RadioButton2 = New System.Windows.Forms.RadioButton()
+        Me.MouseRadioButton = New System.Windows.Forms.RadioButton()
+        Me.PotTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.SerialPort1 = New System.IO.Ports.SerialPort(Me.components)
+        Me.ToolStripComboBox1 = New System.Windows.Forms.ToolStripComboBox()
         CType(Me.DrawingPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
         Me.RightClickContextMenuStrip.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'DrawingPictureBox
@@ -62,7 +69,7 @@ Partial Class SketchPad
         Me.DrawingPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.DrawingPictureBox.Location = New System.Drawing.Point(3, 40)
         Me.DrawingPictureBox.Name = "DrawingPictureBox"
-        Me.DrawingPictureBox.Size = New System.Drawing.Size(793, 327)
+        Me.DrawingPictureBox.Size = New System.Drawing.Size(793, 299)
         Me.DrawingPictureBox.TabIndex = 10
         Me.DrawingPictureBox.TabStop = False
         '
@@ -109,10 +116,10 @@ Partial Class SketchPad
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.EditToolStripMenuItem, Me.HelpToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.EditToolStripMenuItem, Me.HelpToolStripMenuItem, Me.ToolStripComboBox1})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(800, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(800, 27)
         Me.MenuStrip1.TabIndex = 11
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -140,21 +147,21 @@ Partial Class SketchPad
         'SelectColorToolStripMenuItem
         '
         Me.SelectColorToolStripMenuItem.Name = "SelectColorToolStripMenuItem"
-        Me.SelectColorToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SelectColorToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
         Me.SelectColorToolStripMenuItem.Text = "Select Color"
         Me.SelectColorToolStripMenuItem.ToolTipText = "Change Color."
         '
         'DrawWaveformToolStripMenuItem
         '
         Me.DrawWaveformToolStripMenuItem.Name = "DrawWaveformToolStripMenuItem"
-        Me.DrawWaveformToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.DrawWaveformToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
         Me.DrawWaveformToolStripMenuItem.Text = "Draw waveform"
         Me.DrawWaveformToolStripMenuItem.ToolTipText = "Draw waveform."
         '
         'ClearToolStripMenuItem
         '
         Me.ClearToolStripMenuItem.Name = "ClearToolStripMenuItem"
-        Me.ClearToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ClearToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
         Me.ClearToolStripMenuItem.Text = "Clear"
         Me.ClearToolStripMenuItem.ToolTipText = "Clear Drawing."
         '
@@ -227,13 +234,54 @@ Partial Class SketchPad
         '
         Me.RightClickContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem1, Me.EditToolStripMenuItem1, Me.HelpToolStripMenuItem1})
         Me.RightClickContextMenuStrip.Name = "RightClickContextMenuStrip"
-        Me.RightClickContextMenuStrip.Size = New System.Drawing.Size(181, 92)
+        Me.RightClickContextMenuStrip.Size = New System.Drawing.Size(100, 70)
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.RadioButton2)
+        Me.GroupBox1.Controls.Add(Me.MouseRadioButton)
+        Me.GroupBox1.Location = New System.Drawing.Point(232, 339)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(365, 34)
+        Me.GroupBox1.TabIndex = 12
+        Me.GroupBox1.TabStop = False
+        '
+        'RadioButton2
+        '
+        Me.RadioButton2.AutoSize = True
+        Me.RadioButton2.Location = New System.Drawing.Point(182, 11)
+        Me.RadioButton2.Name = "RadioButton2"
+        Me.RadioButton2.Size = New System.Drawing.Size(115, 17)
+        Me.RadioButton2.TabIndex = 1
+        Me.RadioButton2.TabStop = True
+        Me.RadioButton2.Text = "PotentiometerDraw"
+        Me.RadioButton2.UseVisualStyleBackColor = True
+        '
+        'MouseRadioButton
+        '
+        Me.MouseRadioButton.AutoSize = True
+        Me.MouseRadioButton.Location = New System.Drawing.Point(62, 11)
+        Me.MouseRadioButton.Name = "MouseRadioButton"
+        Me.MouseRadioButton.Size = New System.Drawing.Size(82, 17)
+        Me.MouseRadioButton.TabIndex = 0
+        Me.MouseRadioButton.TabStop = True
+        Me.MouseRadioButton.Text = "MouseDraw"
+        Me.MouseRadioButton.UseVisualStyleBackColor = True
+        '
+        'PotTimer
+        '
+        '
+        'ToolStripComboBox1
+        '
+        Me.ToolStripComboBox1.Name = "ToolStripComboBox1"
+        Me.ToolStripComboBox1.Size = New System.Drawing.Size(121, 23)
         '
         'SketchPad
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.DrawingPictureBox)
         Me.Controls.Add(Me.ColorSelectButton)
         Me.Controls.Add(Me.ExitButton)
@@ -246,6 +294,8 @@ Partial Class SketchPad
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         Me.RightClickContextMenuStrip.ResumeLayout(False)
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -276,4 +326,10 @@ Partial Class SketchPad
     Friend WithEvents AboutToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents RightClickContextMenuStrip As ContextMenuStrip
     Friend WithEvents ColorDialog As ColorDialog
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents RadioButton2 As RadioButton
+    Friend WithEvents MouseRadioButton As RadioButton
+    Friend WithEvents PotTimer As Timer
+    Friend WithEvents SerialPort1 As IO.Ports.SerialPort
+    Friend WithEvents ToolStripComboBox1 As ToolStripComboBox
 End Class
