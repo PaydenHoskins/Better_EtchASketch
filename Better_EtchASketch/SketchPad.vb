@@ -226,7 +226,7 @@ Public Class SketchPad
         Loop
 
         Try
-            newY = CInt(Value(0) + (Value(1) / 64))
+            newY = CInt((Value(0) * 4) + (Value(1) / 64))
         Catch ex As Exception
             MsgBox("Bad Data.")
         End Try
@@ -255,17 +255,28 @@ Public Class SketchPad
         Loop
 
         Try
-            newX = CInt(Value(2) + (Value(3) / 64))
+            newX = CInt((Value(2) * 4) + (Value(3) / 64))
+            Me.Text = CStr($"{newX},{newY}")
+
+            DrawWithPot(oldX, oldY, newX, newY)
+            oldX = newX
+            oldY = newY
         Catch ex As Exception
             MsgBox("Bad Data.")
         End Try
-        Me.Text = CStr($"{newX},{newY}")
-        DrawWithMouse(oldX, oldY, newX, newY)
 
-        oldX = newX
-        oldY = newY
+
+
 
     End Sub
+    Sub DrawWithPot(oldX As Integer, oldY As Integer, newX As Integer, newY As Integer)
+        Dim g As Graphics = DrawingPictureBox.CreateGraphics
+        Dim pen As New Pen(ForeGround)
+        pen.Width = 5
+        g.DrawLine(pen, CInt(oldX * (DrawingPictureBox.Width / 1014)), CInt(oldY * (DrawingPictureBox.Height / 1014)), CInt(newX * (DrawingPictureBox.Width / 1014)), CInt(newY * (DrawingPictureBox.Height / 1014)))
+        g.Dispose()
+    End Sub
+
 
     Private Sub MouseRadioButton_Click(sender As Object, e As EventArgs) Handles MouseRadioButton.Click
         If MouseRadioButton.Checked = True Then
