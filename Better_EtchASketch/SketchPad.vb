@@ -2,7 +2,7 @@
 'RCET3371
 'FALL 2025
 'Better_EtchASketch
-'
+'https://github.com/PaydenHoskins/Better_EtchASketch.git
 
 Option Explicit On
 Option Strict On
